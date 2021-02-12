@@ -17,8 +17,16 @@ import { NgxMatTimepickerModule } from './timepicker.module';
 import { NgxMatYearView } from './year-view';
 import { DefaultNgxMatCalendarRangeStrategy, NGX_MAT_DATE_RANGE_SELECTION_STRATEGY } from './date-range-selection-strategy';
 
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import * as fad from '@fortawesome/pro-duotone-svg-icons';
+import * as fal from '@fortawesome/pro-light-svg-icons';
+import * as far from '@fortawesome/pro-regular-svg-icons';
+import * as fas from '@fortawesome/pro-solid-svg-icons';
+import * as fab from '@fortawesome/free-brands-svg-icons';
+
 @NgModule({
    imports: [
+      FontAwesomeModule,
       CommonModule,
       MatDatepickerModule,
       MatDialogModule,
@@ -62,4 +70,8 @@ import { DefaultNgxMatCalendarRangeStrategy, NGX_MAT_DATE_RANGE_SELECTION_STRATE
       }
    ]
 })
-export class NgxMatDatetimePickerModule { }
+export class NgxMatDatetimePickerModule {
+  constructor(private library: FaIconLibrary) {
+    library.addIcons(fas.faCaretUp, fas.faCaretDown, far.faCheck, far.faChevronUp, far.faChevronRight, far.faChevronDown, far.faChevronLeft);
+  }
+}

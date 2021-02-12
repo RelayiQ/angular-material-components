@@ -12,14 +12,16 @@
 
     <ng-content></ng-content>
 
-    <button mat-icon-button type="button" class="mat-calendar-previous-button"
+    <button mat-icon-button type="button"
             [disabled]="!previousEnabled()" (click)="previousClicked()"
             [attr.aria-label]="prevButtonLabel">
+      <fa-icon [icon]="['far','chevron-left']"></fa-icon>
     </button>
 
-    <button mat-icon-button type="button" class="mat-calendar-next-button"
+    <button mat-icon-button type="button"
             [disabled]="!nextEnabled()" (click)="nextClicked()"
             [attr.aria-label]="nextButtonLabel">
+      <fa-icon [icon]="['far','chevron-right']"></fa-icon>
     </button>
   </div>
 </div>

@@ -2,9 +2,8 @@ $fontSizeIcon: 24px;
 $sizeButtonMeridian: 36px;
 
 .ngx-mat-timepicker {
-  font-size: 13px;
   form {
-    min-width: 90px;
+    min-width: 70px;
     .ngx-mat-timepicker-table {
       .ngx-mat-timepicker-tbody {
         tr {
@@ -13,6 +12,7 @@ $sizeButtonMeridian: 36px;
 
             &.ngx-mat-timepicker-spacer {
               font-weight: bold;
+              line-height: 1em;
             }
             &.ngx-mat-timepicker-meridian {
               .mat-button {
@@ -37,13 +37,30 @@ $sizeButtonMeridian: 36px;
               }
             }
             .mat-form-field {
-              width: 20px;
-              max-width: 20px;
+              width: 1.25em;
+              max-width: 1.25em;
               text-align: center;
             }
           }
         }
       }
+    }
+  }
+
+  .mat-form-field {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+    .mat-form-field-infix {
+      padding: 0;
+      border: none;
+    }
+    .mat-form-field-underline {
+      display: none;
+    }
+    .mat-form-field-label-wrapper {
+      top: 0;
+      padding-top: 0;
     }
   }
 }

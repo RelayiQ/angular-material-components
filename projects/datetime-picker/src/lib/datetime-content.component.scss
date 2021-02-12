@@ -5,10 +5,15 @@
   .mat-calendar {
     width: 296px;
   }
+  .view-month-footer {
+    display: flex;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 5px 0;
+  }
   .time-container {
     display: flex;
+    flex-grow: 1;
     position: relative;
-    padding-top: 5px;
     justify-content: center;
     &.disable-seconds{
       .ngx-mat-timepicker{
@@ -17,20 +22,14 @@
         }
       }
     }
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background-color: rgba(0, 0, 0, 0.12);
-    }
   }
 
   .actions {
     display: flex;
     padding: 5px 15px 10px 15px;
     justify-content: flex-end;
+    button {
+      margin: auto;
+    }
   }
 }
