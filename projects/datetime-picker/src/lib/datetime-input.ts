@@ -159,6 +159,10 @@ export class NgxMatDatetimeInput<D> implements ControlValueAccessor, OnDestroy, 
             element.blur();
         }
     }
+
+    @Input()
+    addValidators: boolean;
+
     private _disabled: boolean;
 
     /** Emits when a `change` event is fired on this `<input>`. */
@@ -187,12 +191,20 @@ export class NgxMatDatetimeInput<D> implements ControlValueAccessor, OnDestroy, 
 
     /** The form control validator for whether the input parses. */
     private _parseValidator: ValidatorFn = (): ValidationErrors | null => {
+        if (!this.addValidators) {
+          return null;
+        }
+
         return this._lastValueValid ?
             null : { 'matDatetimePickerParse': { 'text': this._elementRef.nativeElement.value } };
     }
 
     /** The form control validator for the min date. */
     private _minValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+        if (!this.addValidators) {
+          return null;
+        }
+
         const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
         return (!this.min || !controlValue ||
             this._dateAdapter.compareDateWithTime(this.min, controlValue, this._datepicker.showSeconds) <= 0) ?
@@ -201,7 +213,11 @@ export class NgxMatDatetimeInput<D> implements ControlValueAccessor, OnDestroy, 
 
     /** The form control validator for the max date. */
     private _maxValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-        const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
+      if (!this.addValidators) {
+        return null;
+      }
+
+      const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
         return (!this.max || !controlValue ||
             this._dateAdapter.compareDateWithTime(this.max, controlValue, this._datepicker.showSeconds) >= 0) ?
             null : { 'matDatetimePickerMax': { 'max': this.max, 'actual': controlValue } };
@@ -209,6 +225,10 @@ export class NgxMatDatetimeInput<D> implements ControlValueAccessor, OnDestroy, 
 
     /** The form control validator for the date filter. */
     private _filterValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+        if (!this.addValidators) {
+          return null;
+        }
+
         const controlValue = this._getValidDateOrNull(this._dateAdapter.deserialize(control.value));
         return !this._dateFilter || !controlValue || this._dateFilter(controlValue) ?
             null : { 'matDatetimePickerFilter': true };

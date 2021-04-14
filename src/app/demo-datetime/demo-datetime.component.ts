@@ -24,6 +24,7 @@ export class DemoDatetimeComponent implements OnInit {
   public color: ThemePalette = 'primary';
   public disableMinute = false;
   public hideTime = false;
+  public addValidators = false;
 
   public dateControl = new FormControl(null);
 
@@ -51,11 +52,11 @@ export class DemoDatetimeComponent implements OnInit {
 </mat-form-field>`;
 
   public code2 = `import {
-           NgxMatDatetimePickerModule, 
-           NgxMatNativeDateModule, 
-           NgxMatTimepickerModule 
+           NgxMatDatetimePickerModule,
+           NgxMatNativeDateModule,
+           NgxMatTimepickerModule
   } from '@angular-material-components/datetime-picker';
-  
+
 @NgModule({
   imports: [
     ...
@@ -95,7 +96,7 @@ const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
   }
 };
 
-//and in the module providers 
+//and in the module providers
 providers: [
     { provide: NGX_MAT_DATE_FORMATS, useValue: CUSTOM_MOMENT_FORMATS }
   ]`;
@@ -113,7 +114,7 @@ providers: [
     // this.picker.openedStream.subscribe(() => {
     //   console.log('opened');
     // })
-    
+
   }
 
   toggleMinDate(evt: any) {
@@ -130,6 +131,10 @@ providers: [
     } else {
       this.maxDate = null;
     }
+  }
+
+  toggleAddValidators(evt: any) {
+    this.addValidators = !this.addValidators;
   }
 
   closePicker() {

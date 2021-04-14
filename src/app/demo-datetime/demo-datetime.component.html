@@ -169,6 +169,21 @@
           </td>
         </tr>
 
+        <tr>
+          <td>
+            <div>addValidators</div>
+          </td>
+          <td>boolean</td>
+          <td>false</td>
+          <td>
+            <p>RIQ added property to avoid addition of library default validations:</p>
+            <code ngxMatHighlight class="language-typescript">matDatetimePickerParse</code>
+            <code ngxMatHighlight class="language-typescript">matDatetimePickerMin</code>
+            <code ngxMatHighlight class="language-typescript">matDatetimePickerMax</code>
+            <code ngxMatHighlight class="language-typescript">matDatetimePickerFilter</code>
+          </td>
+        </tr>
+
       </tbody>
     </table>
 
@@ -240,12 +255,13 @@
     <mat-card class="zone zone-picker">
       <mat-form-field>
         <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
-          [min]="minDate" [max]="maxDate" [disabled]="disabled">
+          [min]="minDate" [max]="maxDate" [disabled]="disabled" [addValidators]="addValidators">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour"
           [stepMinute]="stepMinute" [stepSecond]="stepSecond" [touchUi]="touchUi" [color]="color"
           [enableMeridian]="enableMeridian" [disableMinute]="disableMinute" [hideTime]="hideTime">
         </ngx-mat-datetime-picker>
+        <mat-error>{{dateControl.errors | json}}</mat-error>
       </mat-form-field>
     </mat-card>
 
@@ -357,6 +373,12 @@
       <div class="config-wrapper">
         <mat-checkbox (change)="toggleMaxDate($event)">
           Max date (Default: null, Demo: now + 2 days) = {{maxDate?.toLocaleString()}}
+        </mat-checkbox>
+      </div>
+
+      <div class="config-wrapper">
+        <mat-checkbox (change)="toggleAddValidators($event)">
+          Add validators = {{addValidators}}
         </mat-checkbox>
       </div>
 
